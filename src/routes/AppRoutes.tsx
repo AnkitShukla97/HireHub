@@ -1,17 +1,22 @@
-import React from "react";
-import {createBrowserRouter} from "react-router";
+import React, { ReactNode } from "react";
+import { createBrowserRouter, RouteObject } from "react-router";
 import Dashboard from "../pages/Dashboard";
 import JobDetail from "../pages/JobDetail";
 import SavedJobs from "../pages/SavedJobs";
 import Login from "../pages/Login";
 
+interface AppRoute extends RouteObject {
+  path: string;
+  element: ReactNode;
+}
+
 const router = createBrowserRouter([
   {
-    path: "/",
+    path: "/login",
     element: <Login />,
   },
   {
-    path: "/dashboard",
+    path: "/",
     element: <Dashboard />,
   },
   {
