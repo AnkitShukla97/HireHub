@@ -7,7 +7,7 @@ const SAVED_JOBS_STORAGE_KEY = "savedJobs";
  * Custom middleware to persist savedJobs slice to localStorage
  * Automatically saves state whenever savedJobs slice is modified
  */
-export const persistenceMiddleware: Middleware<{}, RootState> =
+export const persistenceMiddleware: Middleware<any, RootState> =
   (store) => (next) => (action) => {
     const result = next(action);
     const state = store.getState();
