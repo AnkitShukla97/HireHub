@@ -1,18 +1,15 @@
 import React, { ReactNode } from "react";
-import { Navigate } from "react-router";
+import { Navigate } from "react-router-dom";
+import { useAppSelector } from "../hooks/useAppHooks";
 
 interface PrivateRouteProps {
   children: ReactNode;
-  isAuthenticated?: boolean;
-  redirectTo?: string;
 }
 
-const PrivateRoute: React.FC<PrivateRouteProps> = ({
-  children,
-  isAuthenticated = false,
-  redirectTo = "/login",
-}): ReactNode => {
-  return isAuthenticated ? <>{children}</> : <Navigate to={redirectTo} />;
+const PrivateRoute: React.FC<PrivateRouteProps> = ({ children }): ReactNode => {
+  const user = useAppSelector((state) => state.auth.user);
+
+  return user ? <>{children}</> : <Navigate to="/login" replace />;
 };
 
 export default PrivateRoute;
